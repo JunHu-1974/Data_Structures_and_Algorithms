@@ -11,4 +11,12 @@ Formally, the output of any sorting algorithm must satisfy two conditions:
 1. The output is in monotonic order (each element is no smaller/larger than the previous element, according to the required order).
 2. The output is a permutation (a reordering, yet retaining all of the original elements) of the input.
 
+### Quicksort
+Quicksort is a divide-and-conquer algorithm. It works by selecting a "pivot" element from the array and partitioning the other elements into two sub-arrays, according to whether they are less than or greater than the pivot. For this reason, it is sometimes called partition-exchange sort. The sub-arrays are then sorted recursively. This can be done in-place, requiring small additional amounts of memory to perform the sorting.
+
+### Mergesort
+Mergesort is a divide-and-conquer algorithm. Conceptually, a merge sort works as follows:
+1. Divide the unsorted list into n sub-lists, each containing one element (a list of one element is considered sorted).
+2. Repeatedly merge sublists to produce new sorted sublists until there is only one sublist remaining. This will be the sorted list.
+
 > **Note:** Work in progress. 
