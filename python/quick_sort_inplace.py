@@ -1,18 +1,16 @@
 from typing import List
 
 def quick_sort(numbers: List[int], lo: int, hi: int) -> None:
-    if lo >= hi or lo < 0:
+    if hi - lo < 2:
         return
-    pivot = numbers[hi]
+    pivot = numbers[lo]
     pos = lo
-    for i in range(lo, hi):
+    for i in range(lo+1, hi+1):
         if numbers[i] <= pivot:
-            tmp = numbers[pos]
             numbers[pos] = numbers[i]
-            numbers[i] = tmp
             pos += 1
-    numbers[hi] = numbers[pos]
-    numbers[pos] = pivot
+            numbers[i] = numbers[pos]
+    numbers[pos] = pivot        
     quick_sort(numbers, lo, pos-1)
     quick_sort(numbers, pos+1, hi)
     
