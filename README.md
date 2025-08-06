@@ -25,4 +25,18 @@ Mergesort is a divide-and-conquer algorithm. Conceptually, a merge sort works as
 1. Divide the unsorted list into n sub-lists, each containing one element (a list of one element is considered sorted).
 2. Repeatedly merge sublists to produce new sorted sublists until there is only one sublist remaining. This will be the sorted list.
 
+## Dynamic Programming
+
+There are two key attributes that a problem must have in order for dynamic programming to be applicable: _optimal substructure_ and _overlapping sub-problems_.
+
+_Optimal substructure_ means that the solution to a given optimization problem can be obtained by the combination of optimal solutions to its sub-problems. Such optimal substructures are usually described by means of recursion. For example, the shortest path in a given graph can be split into sub-paths that, in turn, are the shortest paths between the corresponding vertices. Hence, one can easily formulate the solution for finding shortest paths in a recursive manner.
+
+_Overlapping sub-problems_ means that the space of sub-problems must be small, that is, any recursive algorithm solving the problem should solve the same sub-problems over and over, rather than generating new sub-problems. Dynamic programming takes account of this fact and solves each sub-problem only once.
+
+### Memoization
+Memoization is a top-down approach, which is the direct fall-out of the recursive formulation of any problem. If the solution to any problem can be formulated recursively using the solution to its sub-problems, and if its sub-problems are overlapping, then one can easily memoize or store the solutions to the sub-problems in a table (often an array or hashtable in practice). Whenever we attempt to solve a new sub-problem, we first check the table to see if it is already solved. If a solution has been recorded, we can use it directly, otherwise we solve the sub-problem and add its solution to the table.
+
+### Tabulation
+Tabulation is a bottom-up approach. Once we formulate the solution to a problem recursively as in terms of its sub-problems, we can try reformulating the problem in a bottom-up fashion: try solving the most basic sub-problems first and use their solutions to build-on and arrive at solutions to the next sub-problems. This is also usually done in a tabular form by iteratively generating solutions to bigger and bigger sub-problems.
+
 > **Note:** Work in progress. 
