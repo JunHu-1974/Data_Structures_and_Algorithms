@@ -19,18 +19,33 @@ Tree traversal is a special form of graph traversal and refers to the process of
 ### Depth-first search (DFS)
 In depth-first search, we always attempt to visit the node farthest from the root node that we can, but with the caveat that it must be a child of a node we have already visited. Unlike a depth-first search on graphs, there is no need to remember all the nodes we have visited, because a tree cannot contain cycles. There are three common ways to traverse a tree in depth-first search.
 
-1. In pre-order, we always visit the current node; next, we recursively traverse the current node's left subtree, and then we recursively traverse the current node's right subtree. The pre-order traversal is a topologically sorted traversal, because a parent node is processed before any of its child nodes is done.
-2. In in-order, we always recursively traverse the current node's left subtree; next, we visit the current node, and lastly, we recursively traverse the current node's right subtree.
-3. In post-order, we always recursively traverse the current node's left subtree; next, we recursively traverse the current node's right subtree and then visit the current node.
+1. In **pre-order**, we always visit the current node; next, we recursively traverse the current node's left subtree, and then we recursively traverse the current node's right subtree. The **pre-orde**r traversal is a topologically sorted traversal, because a parent node is processed before any of its child nodes is done.
+2. In **in-order**, we always recursively traverse the current node's left subtree; next, we visit the current node, and lastly, we recursively traverse the current node's right subtree.
+3. In **post-order**, we always recursively traverse the current node's left subtree; next, we recursively traverse the current node's right subtree and then visit the current node.
 
 ### Breadth-first search (BFS)
 Contrasting with depth-first search is breadth-first search, which always attempts to visit the node closest to the root that it has not already visited. Breadth-first search is also called level-order traversal.
 
 ## Shortest path problem
 
+In graph theory, the shortest path problem is the problem of finding a path between two vertices (or nodes) in a graph such that the sum of the weights of its constituent edges is minimized. The problem is also sometimes called the single-pair shortest path problem, to distinguish it from the following variations:
+* The single-source shortest path problem, in which we have to find shortest paths from a source vertex v to all other vertices in the graph.
+* The single-destination shortest path problem, in which we have to find shortest paths from all vertices in the directed graph to a single destination vertex v. This can be reduced to the single-source shortest path problem by reversing the arcs in the directed graph.
+* The all-pairs shortest path problem, in which we have to find shortest paths between every pair of vertices v, v' in the graph.
+These generalizations have significantly more efficient algorithms than the simplistic approach of running a single-pair shortest path algorithm on all relevant pairs of vertices.
+
+### Dijkstra's algorithm
+solves the single-source shortest path problem with only non-negative edge weights.
+
+### Bellman–Ford algorithm
+solves the single-source problem if edge weights may be negative.
+
+### A* search algorithm
+solves for single-pair shortest path using heuristics to try to speed up the search.
+
 ## Sorting algorithms
 
-In computer science, a **sorting algorithm** is an algorithm that puts elements of a list into an order. The most frequently used orders are numerical order and lexicographical order, and either ascending or descending. Efficient sorting is important for optimizing the efficiency of other algorithms (such as search and merge algorithms) that require input data to be in sorted lists. Sorting is also often useful for canonicalizing data and for producing human-readable output.
+A sorting algorithm is an algorithm that puts elements of a list into an order. The most frequently used orders are numerical order and lexicographical order, and either ascending or descending. Efficient sorting is important for optimizing the efficiency of other algorithms (such as search and merge algorithms) that require input data to be in sorted lists. Sorting is also often useful for canonicalizing data and for producing human-readable output.
 
 Formally, the output of any sorting algorithm must satisfy two conditions:
 
