@@ -4,14 +4,13 @@ This is a personal hobby project that implements some commonly used data structu
 
 ## Hash table
 
-A hash table is a data structure that implements an associative array. A hash function is used to compute an index, also called a hash code, into an array of buckets or slots, from which the desired value can be found. During lookup, the key is hashed and the resulting hash indicates where the corresponding value is stored. In a well-dimensioned hash table, the average time complexity for each lookup, addition and deletion is independent of the number of elements stored in the table. Hashing is an good example of space-time tradeoff.
+A hash table is a data structure that implements an associative array. A hash function is used to compute an index, also called a hash code, into an array of buckets or slots, from which the desired value can be found. During lookup, the key is hashed and the resulting hash indicates where the corresponding value is stored. In a well-dimensioned hash table, the average time complexity for each lookup, addition and deletion is independent of the number of elements stored in the table. Hashing is a good example of space-time tradeoff.
 
 ### Hash set
 Hash tables can be used in the implementation of set data structure, which can store unique values without any particular order. Set is typically used in testing the membership of a value in the collection, rather than element retrieval.
 
 ### Hash map
-A hash map is a form of hash table data structure that usually stores a large collection of (key, value) pairs, such that each possible key appears at most once in the collection.
-Using a hash map we can map keys to values. The association between a key and a value is often known as a "mapping". The same word may also be used to refer to the process of creating a new association. That's why a mapping implemented by a hash table is called a hash map.
+A hash map is a form of hash table that usually stores a large collection of (key, value) pairs, such that each possible key appears at most once in the collection. Using a hash map we can map keys to values. The association between a key and a value is often known as a "mapping". The same word may also be used to refer to the process of creating a new association. That's why a mapping implemented by a hash table is called a hash map.
 
 ## Sorting algorithms
 
