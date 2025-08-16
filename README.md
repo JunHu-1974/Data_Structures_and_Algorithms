@@ -12,6 +12,22 @@ Hash tables can be used in the implementation of set data structure, which can s
 ### Hash map
 A hash map is a form of hash table that usually stores a large collection of (key, value) pairs, such that each possible key appears at most once in the collection. Using a hash map we can map keys to values. The association between a key and a value is often known as a "mapping". The same word may also be used to refer to the process of creating a new association. That's why a mapping implemented by a hash table is called a hash map.
 
+## Binary tree traversal
+
+Tree traversal is a special form of graph traversal and refers to the process of visiting each node in a tree data structure, exactly once. Unlike linear data structures such as one-dimensional arrays and linked lists, trees may be traversed in multiple ways. From a given node, there is more than one possible next node. Therefore traversals are classified by the order in which the nodes are visited.
+
+### Depth-first search (DFS)
+In depth-first search, we always attempt to visit the node farthest from the root node that we can, but with the caveat that it must be a child of a node we have already visited. Unlike a depth-first search on graphs, there is no need to remember all the nodes we have visited, because a tree cannot contain cycles. There are three common ways to traverse a tree in depth-first search.
+
+1. In pre-order, we always visit the current node; next, we recursively traverse the current node's left subtree, and then we recursively traverse the current node's right subtree. The pre-order traversal is a topologically sorted traversal, because a parent node is processed before any of its child nodes is done.
+2. In in-order, we always recursively traverse the current node's left subtree; next, we visit the current node, and lastly, we recursively traverse the current node's right subtree.
+3. In post-order, we always recursively traverse the current node's left subtree; next, we recursively traverse the current node's right subtree and then visit the current node.
+
+### Breadth-first search (BFS)
+Contrasting with depth-first search is breadth-first search, which always attempts to visit the node closest to the root that it has not already visited. Breadth-first search is also called level-order traversal.
+
+## Shortest path problem
+
 ## Sorting algorithms
 
 In computer science, a **sorting algorithm** is an algorithm that puts elements of a list into an order. The most frequently used orders are numerical order and lexicographical order, and either ascending or descending. Efficient sorting is important for optimizing the efficiency of other algorithms (such as search and merge algorithms) that require input data to be in sorted lists. Sorting is also often useful for canonicalizing data and for producing human-readable output.
@@ -35,7 +51,7 @@ Mergesort is a divide-and-conquer algorithm. Conceptually, a merge sort works as
 1. Divide the unsorted list into n sub-lists, each containing one element (a list of one element is considered sorted).
 2. Repeatedly merge sublists to produce new sorted sublists until there is only one sublist remaining. This will be the sorted list.
 
-## Dynamic Programming
+## Dynamic programming
 
 There are two key attributes that a problem must have in order for dynamic programming to be applicable: _optimal substructure_ and _overlapping sub-problems_.
 
