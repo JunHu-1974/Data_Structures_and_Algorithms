@@ -12,6 +12,8 @@ Hash tables can be used in the implementation of set data structure, which can s
 ### Hash map
 A hash map is a form of hash table that usually stores a large collection of (key, value) pairs, such that each possible key appears at most once in the collection. Using a hash map we can map keys to values. The association between a key and a value is often known as a "mapping". The same word may also be used to refer to the process of creating a new association. That's why a mapping implemented by a hash table is called a hash map.
 
+> **Note:** Work in progress. 
+
 ## Binary tree traversal
 
 Tree traversal is a special form of graph traversal and refers to the process of visiting each node in a tree data structure, exactly once. Unlike linear data structures such as one-dimensional arrays and linked lists, trees may be traversed in multiple ways. From a given node, there is more than one possible next node. Therefore traversals are classified by the order in which the nodes are visited.
@@ -26,22 +28,31 @@ In depth-first search, we always attempt to visit the node farthest from the roo
 ### Breadth-first search (BFS)
 Contrasting with depth-first search is breadth-first search, which always attempts to visit the node closest to the root that it has not already visited. Breadth-first search is also called level-order traversal.
 
+> **Note:** Work in progress. 
+
 ## Shortest path problem
 
 In graph theory, the shortest path problem is the problem of finding a path between two vertices (or nodes) in a graph such that the sum of the weights of its constituent edges is minimized. The problem is also sometimes called the single-pair shortest path problem, to distinguish it from the following variations:
 * The single-source shortest path problem, in which we have to find shortest paths from a source vertex v to all other vertices in the graph.
 * The single-destination shortest path problem, in which we have to find shortest paths from all vertices in the directed graph to a single destination vertex v. This can be reduced to the single-source shortest path problem by reversing the arcs in the directed graph.
 * The all-pairs shortest path problem, in which we have to find shortest paths between every pair of vertices v, v' in the graph.
+
 These generalizations have significantly more efficient algorithms than the simplistic approach of running a single-pair shortest path algorithm on all relevant pairs of vertices.
 
 ### Dijkstra's algorithm
-solves the single-source shortest path problem with only non-negative edge weights.
+Dijkstra's algorithm solves the single-source shortest path problem for directed or undirected graphs, with only non-negative edge weights. To find the shortest path, the algorithm repeatedly selects the nearest unvisited vertex and calculating the distance to all its unvisited neighboring vertices. In order to do so, the algorithm needs to know which vertex is the source, a way to mark vertices as visited, and an overview of the current shortest distance to each vertex as it works its way through the graph, updating these distances when a shorter distance is found.
+
+Dijkstra's algorithm is often considered to be the most straightforward algorithm for solving the shortest path problem. However, it does not work for graphs with negative edges. For graphs with negative edges, the Bellman-Ford algorithm can be used instead.
 
 ### Bellman–Ford algorithm
-solves the single-source problem if edge weights may be negative.
+The Bellman-Ford algorithm is best suited to solve the signle-source shortest path problem in a directed graph, with one or more negative edge weights. It does so by repeatedly checking all the edges in the graph for shorter paths, for _V_-1 times where _V_ is the number of vertices in the graph. The algorithm can also be used for graphs with positive edges (both directed and undirected), but Dijkstra's algorithm is preferred in such cases because it is faster.
+
+Using the Bellman-Ford algorithm on a graph with negative cycles, a circular path where the sum of the edge weights is negative, will not produce a result of shortest paths because we can always go one more round in a negative cycle to get a shorter path. Luckily, the Bellman-Ford algorithm can be implemented to safely detect and report the presence of negative cycles.
 
 ### A* search algorithm
-solves for single-pair shortest path using heuristics to try to speed up the search.
+A* (pronounced "A-star") search algorithm solves the single-pair shortest path problem. It can be seen as an extension of Dijkstra's algorithm and achieves better performance by using heuristics to speed up its search. Compared to Dijkstra's algorithm, A* search algorithm only finds the shortest path from a specified source to a specified goal, not the shortest-path tree from a specified source to all possible goals. This is a necessary trade-off for using a specific-goal-directed heuristic. The algorithm is the best solution in many cases due to its completeness, optimality, and optimal efficiency.
+
+> **Note:** Work in progress. 
 
 ## Sorting algorithms
 
@@ -79,5 +90,3 @@ Memoization is a top-down approach, which is the direct fall-out of the recursiv
 
 ### Tabulation
 Tabulation is a bottom-up approach. Once we formulate the solution to a problem recursively as in terms of its sub-problems, we can try reformulating the problem in a bottom-up fashion: try solving the most basic sub-problems first and use their solutions to build-on and arrive at solutions to the next sub-problems. This is also usually done in a tabular form by iteratively generating solutions to bigger and bigger sub-problems.
-
-> **Note:** Work in progress. 
