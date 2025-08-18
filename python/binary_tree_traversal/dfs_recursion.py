@@ -11,7 +11,7 @@ def visit(node: TreeNode) -> Optional[int]:
 def depth_first_search(root: TreeNode, order: str) -> list:
     output = []
     if not root:
-        return output
+        return [None]
     left_tree = depth_first_search(root.left, order)
     right_tree = depth_first_search(root.right, order)
     if order == 'pre':

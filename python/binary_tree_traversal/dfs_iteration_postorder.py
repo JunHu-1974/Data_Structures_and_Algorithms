@@ -8,24 +8,34 @@ def visit(node: TreeNode) -> Optional[int]:
     else:
         return None
     
-def breadth_first_search(root: TreeNode) -> list:
+def depth_first_search(root: TreeNode) -> list:
     output = []
-    queue = [[root]]
-    depth = 0
-    while queue[depth]:
-        queue.append([])
-        for node in queue[depth]:
-            output.append(visit(node))
-            if node:
-                queue[depth+1].append(node.left)
-                queue[depth+1].append(node.right)
-        depth += 1
+    if not root:
+        return output
+    stack = []
+    node = root
+    while stack or node:
+        if node:
+            stack.append([node, True])
+            node = node.left
+            if not node:
+                output.append(visit(node))
+        else:
+            peek_node = stack[-1][0]
+            if stack[-1][1]: 
+                node = peek_node.right
+                if not node:
+                    output.append(visit(node))
+                stack[-1][1] = False
+            else:
+                output.append(visit(peek_node))
+                stack.pop()
     return output
 
 def main() -> None:
     tree = listToTreeNode([6, 2, 7, 1, 4, None, 9, None, None, 3, 5, 8])
     print(tree)
-    output= breadth_first_search(tree)
+    output= depth_first_search(tree)
     print(output)
 
 if __name__ == '__main__':
