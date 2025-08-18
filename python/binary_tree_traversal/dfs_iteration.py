@@ -8,34 +8,45 @@ def visit(node: TreeNode) -> Optional[int]:
     else:
         return None
     
-def depth_first_search(root: TreeNode) -> list:
+def depth_first_search(root: TreeNode, order: str) -> list:
     output = []
     if not root:
         return output
-    stack = []
-    node = root
-    while stack or node:
-        if node:
-            stack.append([node, True])
-            node = node.left
-            if not node:
+    if order == 'pre':
+        stack = [[root.right, root.left, root]]
+    elif order == 'in':
+        stack = [[root.right, root, root.left]]
+    else:
+        stack = [[root, root.right, root.left]]
+    while stack:
+        if stack[-1]:
+            node = stack[-1].pop()
+            if order == 'pre' and len(stack[-1]) == 2:
+                output.append(visit(node))
+            elif order == 'in' and len(stack[-1]) == 1:
+                output.append(visit(node))
+            elif order == 'post' and len(stack[-1]) == 0:
+                output.append(visit(node))
+            elif order == 'pre' and node:
+                stack.append([node.right, node.left, node])
+            elif order == 'in' and node:
+                stack.append([node.right, node, node.left])
+            elif order == 'post' and node:
+                stack.append([node, node.right, node.left])
+            else:
                 output.append(visit(node))
         else:
-            peek_node = stack[-1][0]
-            if stack[-1][1]: 
-                node = peek_node.right
-                if not node:
-                    output.append(visit(node))
-                stack[-1][1] = False
-            else:
-                output.append(visit(peek_node))
-                stack.pop()
+            stack.pop()
     return output
 
 def main() -> None:
     tree = listToTreeNode([6, 2, 7, 1, 4, None, 9, None, None, 3, 5, 8])
     print(tree)
-    output= depth_first_search(tree)
+    output= depth_first_search(tree, 'pre')
+    print(output)
+    output= depth_first_search(tree, 'in')
+    print(output)
+    output= depth_first_search(tree, 'post')
     print(output)
 
 if __name__ == '__main__':
