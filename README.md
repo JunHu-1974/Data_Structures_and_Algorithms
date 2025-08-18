@@ -1,18 +1,16 @@
 # Data Structures and Algorithms: Python
 
-This is a personal hobby project that implements some commonly used data structures and algorithms in Python.
+This is one of my hobby projects which implements some commonly used data structures and algorithms in Python.
 
 ## Hash table
 
-A hash table is a data structure that implements an associative array. A hash function is used to compute an index, also called a hash code, into an array of buckets or slots, from which the desired value can be found. During lookup, the key is hashed and the resulting hash indicates where the corresponding value is stored. In a well-dimensioned hash table, the average time complexity for each lookup, addition and deletion is independent of the number of elements stored in the table. Hashing is a good example of space-time tradeoff.
+A hash table is a data structure that implements an associative array. A hash function is used to compute an index, also called a hash code, into an array of buckets or slots, from which the desired value can be found. During lookup, the key is hashed and the resulting hash code indicates where the corresponding value is stored. In a well-dimensioned hash table, the average time complexity for each lookup, addition and deletion is independent of the number of elements stored in the table. Hashing is a good example of space-time tradeoff.
 
 ### Hash set
-Hash tables can be used in the implementation of set data structure, which can store unique values without any particular order. Set is typically used in testing the membership of a value in the collection, rather than element retrieval.
+Hash table can be used in the implementation of set data structure, which stores a collection of unique values without any particular order. Set is typically used in testing the membership of a value in the collection, rather than element retrieval.
 
 ### Hash map
-A hash map is a form of hash table that usually stores a large collection of (key, value) pairs, such that each possible key appears at most once in the collection. Using a hash map we can map keys to values. The association between a key and a value is often known as a "mapping". The same word may also be used to refer to the process of creating a new association. That's why a mapping implemented by a hash table is called a hash map.
-
-> **Note:** Work in progress. 
+A hash map is a form of hash table that usually stores a large collection of (key, value) pairs, such that each possible key appears at most once in the collection. Using a hash map we can map keys to values. The association between a key and a value is often known as a "mapping". The same word may also be used to refer to the process of creating a new association. That's why a mapping implemented by hash table is called a hash map.
 
 ## Binary tree traversal
 
@@ -26,9 +24,7 @@ In depth-first search, we always attempt to visit the node farthest from the roo
 3. In **post-order**, we always recursively traverse the current node's left subtree; next, we recursively traverse the current node's right subtree and then visit the current node.
 
 ### Breadth-first search (BFS)
-Contrasting with depth-first search is breadth-first search, which always attempts to visit the node closest to the root that it has not already visited. Breadth-first search is also called level-order traversal.
-
-> **Note:** Work in progress. 
+Contrasting with depth-first search is breadth-first search, which always attempts to visit the node closest to the root that it has not already visited. This ensures that all nodes at a given distance from the root are explored before moving to nodes with greater distance. Breadth-first search is also called level-order traversal.
 
 ## Shortest path problem
 
