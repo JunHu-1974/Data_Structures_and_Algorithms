@@ -23,10 +23,10 @@ def depth_first_search(root: TreeNode) -> list:
         else:
             peek_node = stack[-1][0]
             if stack[-1][1]: 
+                stack[-1][1] = False
                 node = peek_node.right
                 if not node:
                     output.append(visit(node))
-                stack[-1][1] = False
             else:
                 output.append(visit(peek_node))
                 stack.pop()
