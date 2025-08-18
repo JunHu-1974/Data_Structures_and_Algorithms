@@ -40,6 +40,12 @@ def depth_first_search(root: TreeNode, order: str) -> list:
     return output
 
 def main() -> None:
+    output= depth_first_search(None, 'pre')
+    print(output)
+    output= depth_first_search(None, 'in')
+    print(output)
+    output= depth_first_search(None, 'post')
+    print(output)
     tree = listToTreeNode([6, 2, 7, 1, 4, None, 9, None, None, 3, 5, 8])
     print(tree)
     output= depth_first_search(tree, 'pre')
