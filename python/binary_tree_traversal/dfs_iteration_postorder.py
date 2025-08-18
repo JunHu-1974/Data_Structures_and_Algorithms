@@ -11,7 +11,7 @@ def visit(node: TreeNode) -> Optional[int]:
 def depth_first_search(root: TreeNode) -> list:
     output = []
     if not root:
-        return output
+        return [None]
     stack = []
     node = root
     while stack or node:

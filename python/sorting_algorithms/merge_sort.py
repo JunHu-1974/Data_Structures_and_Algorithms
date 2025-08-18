@@ -26,11 +26,13 @@ def merge_sort(numbers: List[int]) -> List[int]:
         return numbers[:]
     else:
         runs = [numbers[i:i+1] for i in range(len(numbers))]
-        while len(runs) > 1:
-            first = runs.pop(0)
-            second = runs.pop(0)
+        i = 0
+        while i < len(runs)-1:
+            first = runs[i]
+            second = runs[i+1]
             runs.append(merge(first, second))
-        return runs[0]
+            i += 2
+        return runs[i]
     
 def main() -> None:
     numbers1 = []
