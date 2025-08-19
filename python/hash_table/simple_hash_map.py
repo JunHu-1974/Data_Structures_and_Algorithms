@@ -1,16 +1,18 @@
+from typing import Optional
+
 class SimpleHashMap(object):
-    def __init__(self, size=100):
+    def __init__(self, size: int = 100):
         self.size = size
         self.buckets = [[] for i in range(size)]
     
-    def hash_function(self, key):
+    def hash_function(self, key: str) -> int:
         return sum(ord(char) for char in key)
 
-    def print(self):
+    def print(self) -> None:
         for index, bucket in enumerate(self.buckets):
             print('Bucket[{}]: {}'.format(index, bucket))
 
-    def put(self, key, value):
+    def put(self, key: str, value: str) -> None:
         index = self.hash_function(key) % self.size
         bucket = self.buckets[index]
         for i, (k,v) in enumerate(bucket):
@@ -19,7 +21,7 @@ class SimpleHashMap(object):
                 return
         bucket.append((key,value))
 
-    def get(self, key):
+    def get(self, key: str) -> Optional[str]:
         index = self.hash_function(key) % self.size
         bucket = self.buckets[index]
         for k,v in bucket:
@@ -27,7 +29,7 @@ class SimpleHashMap(object):
                 return v
         return None
 
-    def remove(self, key):
+    def remove(self, key: str) -> bool:
         index = self.hash_function(key) % self.size
         bucket = self.buckets[index]
         for i, (k,v) in enumerate(bucket):
