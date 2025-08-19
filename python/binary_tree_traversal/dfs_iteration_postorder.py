@@ -16,6 +16,7 @@ def depth_first_search(root: TreeNode) -> list:
     node = root
     while stack or node:
         if node:
+            #output.append(visit(node)) #pre-order
             stack.append([node, True])
             node = node.left
             if not node:
@@ -24,11 +25,12 @@ def depth_first_search(root: TreeNode) -> list:
             peek_node = stack[-1][0]
             if stack[-1][1]: 
                 stack[-1][1] = False
+                #output.append(visit(peek_node)) #in-order
                 node = peek_node.right
                 if not node:
                     output.append(visit(node))
             else:
-                output.append(visit(peek_node))
+                output.append(visit(peek_node)) #post-order
                 stack.pop()
     return output
 
