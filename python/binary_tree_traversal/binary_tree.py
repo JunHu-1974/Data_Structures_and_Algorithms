@@ -35,6 +35,8 @@ def listToTreeNode(values: list = []) -> TreeNode:
     return root
 
 def main() -> None:
+    tree = listToTreeNode()
+    print(tree)
     tree = listToTreeNode([6, 2, 7, 1, 4, None, 9, None, None, 3, 5, 8])
     print(tree)
 

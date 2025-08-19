@@ -11,7 +11,7 @@ def visit(node: TreeNode) -> Optional[int]:
 def depth_first_search(root: TreeNode, order: str) -> list:
     output = []
     if not root:
-        return output
+        return [None]
     if order == 'pre':
         stack = [[root.right, root.left, root]]
     elif order == 'in':
@@ -40,11 +40,12 @@ def depth_first_search(root: TreeNode, order: str) -> list:
     return output
 
 def main() -> None:
-    output= depth_first_search(None, 'pre')
+    tree = listToTreeNode()
+    output= depth_first_search(tree, 'pre')
     print(output)
-    output= depth_first_search(None, 'in')
+    output= depth_first_search(tree, 'in')
     print(output)
-    output= depth_first_search(None, 'post')
+    output= depth_first_search(tree, 'post')
     print(output)
     tree = listToTreeNode([6, 2, 7, 1, 4, None, 9, None, None, 3, 5, 8])
     print(tree)

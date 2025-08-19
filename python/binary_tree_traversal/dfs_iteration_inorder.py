@@ -29,7 +29,8 @@ def depth_first_search(root: TreeNode) -> list:
     return output
 
 def main() -> None:
-    output= depth_first_search(None)
+    tree = listToTreeNode()
+    output= depth_first_search(tree)
     print(output)
     tree = listToTreeNode([6, 2, 7, 1, 4, None, 9, None, None, 3, 5, 8])
     print(tree)
