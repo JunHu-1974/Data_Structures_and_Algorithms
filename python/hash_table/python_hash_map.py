@@ -13,10 +13,13 @@ def main() -> None:
 
     print(hash_map)
     print('123-6574 has hash code:', hash('123-6574'))
-    print('Name associated with 123-6574:', hash_map['123-6574'])
+    print('Value associated with key 123-6574:', hash_map['123-6574'])
     hash_map['123-6574'] = 'James'
     print('123-6574 has hash code:', hash('123-6574'))
-    print('Name associated with 123-6574:', hash_map['123-6574'])
+    print('Value associated with key 123-6574:', hash_map['123-6574'])
+    hash_map.pop('123-6574')
+    print(hash_map)
+    print('Value associated with key 123-6574:', hash_map.pop('123-6574', None))
     
 if __name__ == '__main__':
     main()

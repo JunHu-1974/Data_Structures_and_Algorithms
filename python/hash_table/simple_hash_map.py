@@ -4,14 +4,14 @@ class SimpleHashMap(object):
         self.buckets = [[] for i in range(size)]
     
     def hash_function(self, key):
-        return sum(ord(char) for char in key) % self.size
+        return sum(ord(char) for char in key)
 
     def print(self):
         for index, bucket in enumerate(self.buckets):
             print('Bucket[{}]: {}'.format(index, bucket))
 
     def put(self, key, value):
-        index = self.hash_function(key)
+        index = self.hash_function(key) % self.size
         bucket = self.buckets[index]
         for i, (k,v) in enumerate(bucket):
             if k == key:
@@ -20,7 +20,7 @@ class SimpleHashMap(object):
         bucket.append((key,value))
 
     def get(self, key):
-        index = self.hash_function(key)
+        index = self.hash_function(key) % self.size
         bucket = self.buckets[index]
         for k,v in bucket:
             if k == key:
@@ -28,7 +28,7 @@ class SimpleHashMap(object):
         return None
 
     def remove(self, key):
-        index = self.hash_function(key)
+        index = self.hash_function(key) % self.size
         bucket = self.buckets[index]
         for i, (k,v) in enumerate(bucket):
             if k == key:
@@ -51,10 +51,13 @@ def main() -> None:
 
     hash_map.print()
     print('123-6574 has hash code:', hash_map.hash_function('123-6574'))
-    print('Name associated with 123-6574:', hash_map.get('123-6574'))
+    print('Value associated with key 123-6574:', hash_map.get('123-6574'))
     hash_map.put('123-6574', 'James')
     print('123-6574 has hash code:', hash_map.hash_function('123-6574'))
-    print('Name associated with 123-6574:', hash_map.get('123-6574'))
+    print('Value associated with key 123-6574:', hash_map.get('123-6574'))
+    hash_map.remove('123-6574')
+    hash_map.print()
+    print('Value associated with key 123-6574:', hash_map.get('123-6574'))
 
 if __name__ == '__main__':
     main()

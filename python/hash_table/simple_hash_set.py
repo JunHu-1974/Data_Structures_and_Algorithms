@@ -4,14 +4,14 @@ class SimpleHashSet(object):
         self.buckets = [[] for i in range(size)]
     
     def hash_function(self, key):
-        return sum(ord(char) for char in key) % self.size
+        return sum(ord(char) for char in key)
 
     def print(self):
         for index, bucket in enumerate(self.buckets):
             print('Bucket[{}]: {}'.format(index, bucket))
 
     def add(self, key):
-        index = self.hash_function(key)
+        index = self.hash_function(key) % self.size
         bucket = self.buckets[index]
         if not key in bucket:
             bucket.append(key)
@@ -20,7 +20,7 @@ class SimpleHashSet(object):
             return False
 
     def remove(self, key):
-        index = self.hash_function(key)
+        index = self.hash_function(key) % self.size
         bucket = self.buckets[index]
         if key in bucket:
             bucket.remove(key)
@@ -29,7 +29,7 @@ class SimpleHashSet(object):
             return False
 
     def contains(self, key):
-        index = self.hash_function(key)
+        index = self.hash_function(key) % self.size
         bucket = self.buckets[index]
         return key in bucket
 
