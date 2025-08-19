@@ -24,7 +24,7 @@ In depth-first search, we always attempt to visit the node farthest from the roo
 3. In **post-order**, we always recursively traverse the current node's left subtree; next, we recursively traverse the current node's right subtree and then visit the current node.
 
 ### Breadth-first search (BFS)
-Contrasting with depth-first search is breadth-first search, which always attempts to visit the node closest to the root that it has not already visited. This ensures that all nodes at a given distance from the root are explored before moving to nodes with greater distance. Breadth-first search is also called level-order traversal.
+Contrasting with depth-first search is breadth-first search, which always attempts to visit the node closest to the root node that it has not already visited. This ensures that all nodes at a given distance from the root node are explored before moving to nodes at greater distance. Breadth-first search is also called level-order traversal.
 
 ## Shortest path problem
 
