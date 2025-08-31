@@ -12,7 +12,8 @@ class fibonacci_recursion:
     
 def main() -> None:
     alg = fibonacci_recursion()
-    print(alg.fibonacci(6))
+    for i in range(7):
+        print(alg.fibonacci(i))
 
 if __name__ == '__main__':
     main()
