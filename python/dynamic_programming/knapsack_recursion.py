@@ -20,7 +20,8 @@ class knapsack_recursion:
     
 def main() -> None:
     alg = knapsack_recursion([300, 200, 400, 500], [2, 1, 5, 3])
-    print(alg.knapsack(4, 10))
+    for i in range(5,11):
+        print(alg.knapsack(4, i))
 
 if __name__ == '__main__':
     main()
