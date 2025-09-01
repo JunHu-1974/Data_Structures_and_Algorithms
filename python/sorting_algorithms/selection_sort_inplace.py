@@ -4,11 +4,15 @@ def selection_sort(numbers: List[int]) -> None:
     if len(numbers) <= 1:
         return
     else:
-        for i in range(len(numbers)):
-            j = numbers[i:].index(min(numbers[i:]))
-            tmp = numbers[i+j]
-            numbers[i+j] = numbers[i]
-            numbers[i] = tmp
+        for i in range(len(numbers)-1):
+            j = i
+            for k in range(i+1,len(numbers)):
+                if numbers[k] < numbers[j]:
+                    j = k
+            if j > i:
+                tmp = numbers[i]
+                numbers[i] = numbers[j]
+                numbers[j] = tmp
         return
     
 def main() -> None:

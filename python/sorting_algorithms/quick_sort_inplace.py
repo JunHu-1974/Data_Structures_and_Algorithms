@@ -1,7 +1,7 @@
 from typing import List
 
 def quick_sort(numbers: List[int], lo: int, hi: int) -> None:
-    if hi - lo < 2:
+    if lo >= hi:
         return
     pivot = numbers[lo]
     pos = lo

@@ -8,7 +8,7 @@ def selection_sort(numbers: List[int]) -> List[int]:
     else:
         unsorted_numbers = numbers[:]
         sorted_numbers = []
-        while len(unsorted_numbers) > 0:
+        while unsorted_numbers:
             m = min(unsorted_numbers)
             sorted_numbers.append(m)
             unsorted_numbers.remove(m)

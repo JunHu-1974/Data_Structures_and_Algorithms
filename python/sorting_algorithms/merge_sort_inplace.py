@@ -20,7 +20,7 @@ def merge(a: List[int], lo: int, mid: int, hi: int) -> None:
     return
 
 def merge_sort(numbers: List[int]) -> None:
-    if len(numbers) < 2:
+    if len(numbers) <= 1:
         return
     else:
         step = 1
