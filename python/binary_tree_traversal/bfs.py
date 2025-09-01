@@ -2,13 +2,13 @@ from typing import Optional
 
 from binary_tree import TreeNode, listToTreeNode
 
-def visit(node: TreeNode) -> Optional[int]:
+def visit(node: Optional[TreeNode]) -> Optional[int]:
     if node:
         return node.val
     else:
         return None
     
-def breadth_first_search(root: TreeNode) -> list:
+def breadth_first_search(root: Optional[TreeNode]) -> list:
     output = []
     queue = [[root]]
     depth = 0

@@ -2,16 +2,16 @@ from typing import Optional
 
 from binary_tree import TreeNode, listToTreeNode
 
-def visit(node: TreeNode) -> Optional[int]:
+def visit(node: Optional[TreeNode]) -> Optional[int]:
     if node:
         return node.val
     else:
         return None
     
-def depth_first_search(root: TreeNode, order: str) -> list:
+def depth_first_search(root: Optional[TreeNode], order: str) -> list:
     output = []
     if not root:
-        return [None]
+        return [root]
     left_tree = depth_first_search(root.left, order)
     right_tree = depth_first_search(root.right, order)
     if order == 'pre':

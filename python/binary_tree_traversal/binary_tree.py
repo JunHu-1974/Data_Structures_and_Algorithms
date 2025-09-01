@@ -9,7 +9,7 @@ class TreeNode(object):
     def __str__(self) -> str:
         return 'val: {}, left: ({}), right: ({})'.format(self.val, self.left, self.right)
 
-def listToTreeNode(values: list = []) -> TreeNode:
+def listToTreeNode(values: list = []) -> Optional[TreeNode]:
     if not values:
         return None
 
@@ -22,14 +22,14 @@ def listToTreeNode(values: list = []) -> TreeNode:
         parent += 1
         value = values[curr]
         curr += 1
-        if value:
+        if not value is None:
             node.left = TreeNode(value)
             queue.append(node.left)
 
         if curr < len(values):
             value = values[curr]
             curr += 1
-            if value:
+            if not value is None:
                 node.right = TreeNode(value)
                 queue.append(node.right)
     return root

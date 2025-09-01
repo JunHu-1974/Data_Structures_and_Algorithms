@@ -2,30 +2,27 @@ from typing import Optional
 
 from binary_tree import TreeNode, listToTreeNode
 
-def visit(node: TreeNode) -> Optional[int]:
+def visit(node: Optional[TreeNode]) -> Optional[int]:
     if node:
         return node.val
     else:
         return None
     
-def depth_first_search(root: TreeNode) -> list:
+def depth_first_search(root: Optional[TreeNode]) -> list:
     output = []
     if not root:
-        return [None]
+        return [root]
     stack = []
     node = root
     while stack or node:
         if node:
             stack.append(node)
             node = node.left
-            if not node:
-                output.append(visit(node))
         else:
+            output.append(visit(node))
             node = stack.pop()
             output.append(visit(node))
             node = node.right
-            if not node:
-                output.append(visit(node))
     return output
 
 def main() -> None:
