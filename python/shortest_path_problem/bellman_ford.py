@@ -1,14 +1,15 @@
+from collections import deque
 from graph import Graph
 
 def print_path(graph: Graph, predecessors: list[int], source: tuple[int, int], target: tuple[int, int]) -> None:
-    path = []
+    path = deque()
     source_index = graph.vertices.index(source)
     curr = graph.vertices.index(target)
     while curr > 0:
-        path.insert(0, str(graph.vertices[curr]))
+        path.appendleft(str(graph.vertices[curr]))
         curr = predecessors[curr]
         if curr == source_index:
-            path.insert(0, str(source))
+            path.appendleft(str(source))
             curr = -1
     print('->'.join(path))
 
@@ -17,20 +18,23 @@ def bellman_ford(graph: Graph, source: tuple[int, int]) -> tuple[list[int], list
     distances = graph.size * [float('inf')]
     distances[source_index] = 0
     predecessors = graph.size * [-1]
-    for i in range(graph.size-1):
+
+    relax_count = 0
+    changed = graph.size * [False]
+    changed[source_index] = True
+    while relax_count < graph.size and any(changed):
+        changed = graph.size * [False]
         for u in range(graph.size):
-            for v in range(graph.size):
-                if graph.adj_matrix[u][v] != float('inf'):
-                    new_distance = distances[u] + graph.adj_matrix[u][v]
-                    if new_distance < distances[v]:
-                        distances[v] = new_distance
-                        predecessors[v] = u
-    for u in range(graph.size):
-        for v in range(graph.size):
-            if graph.adj_matrix[u][v] != float('inf'):
+            for v in graph.neighbors[u]:
                 new_distance = distances[u] + graph.adj_matrix[u][v]
                 if new_distance < distances[v]:
-                    predecessors = []
+                    distances[v] = new_distance
+                    predecessors[v] = u
+                    if not changed[v]:
+                        changed[v] = True
+        relax_count += 1
+    if relax_count == graph.size:
+        predecessors = []
     return distances, predecessors
 
 def main() -> None:

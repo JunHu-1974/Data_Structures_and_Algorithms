@@ -13,31 +13,30 @@ def print_path(graph: Graph, predecessors: list[int], source: tuple[int, int], t
             curr = -1
     print('->'.join(path))
 
-def dijkstra(graph: Graph, source: tuple[int, int]) -> tuple[list[int], list[int]]:
+def bellman_ford_moore(graph: Graph, source: tuple[int, int]) -> tuple[list[int], list[int]]:
     source_index =  graph.vertices.index(source)
     distances = graph.size * [float('inf')]
     distances[source_index] = 0
     predecessors = graph.size * [-1]
 
-    unvisited = set(list(range(graph.size)))
-    while unvisited:
-        min_distance = float('inf')
-        u = -1
-        for i in unvisited:
-            if distances[i] < min_distance:
-                min_distance = distances[i]
-                u = i
-
-        if u == -1:
-            unvisited_node = set()
-        else:
-            for v in graph.neighbors[u]:
-                if  v in unvisited:
-                    new_distance = distances[u] + graph.adj_matrix[u][v]
-                    if new_distance < distances[v]:
-                        distances[v] = new_distance
-                        predecessors[v] = u
-            unvisited.remove(u)
+    relax_count = graph.size * [0]
+    changed = graph.size * [False]
+    changed[source_index] = True
+    queue = deque([source_index])
+    while queue:
+        u = queue.popleft()
+        changed[u] = False
+        for v in graph.neighbors[u]:
+            new_distance = distances[u] + graph.adj_matrix[u][v]
+            if new_distance < distances[v]:
+                distances[v] = new_distance
+                predecessors[v] = u
+                if not changed[v]:
+                    changed[v] = True
+                    queue.append(v)
+                    relax_count[v] += 1
+                    if relax_count[v] == graph.size:
+                        return distances, []
     return distances, predecessors
 
 def main() -> None:
@@ -61,20 +60,29 @@ def main() -> None:
     graph.add_edge(5, 6, 5, False)
 
     graph.add_edge(3, 1, 1, True)
-    distances, predecessors = dijkstra(graph, (0,1))
+    distances, predecessors = bellman_ford_moore(graph, (0,1))
     for i,d in enumerate(distances):
         print(graph.vertices[i], distances[i])
-    print_path(graph, predecessors, (0,1), (2,2))
-    graph.add_edge(3, 1, -2, True)
-    distances, predecessors = dijkstra(graph, (0,1))
+    if predecessors:
+        print_path(graph, predecessors, (0,1), (2,2))
+    else:
+        print('Negative weight cycle detected')
+    graph.add_edge(3, 1, -3, True)
+    distances, predecessors = bellman_ford_moore(graph, (0,1))
     for i,d in enumerate(distances):
         print(graph.vertices[i], distances[i])
-    print_path(graph, predecessors, (0,1), (2,2))
+    if predecessors:
+        print_path(graph, predecessors, (0,1), (2,2))
+    else:
+        print('Negative weight cycle detected')
     graph.add_edge(3, 1, -9, True)
-    distances, predecessors = dijkstra(graph, (0,1))
+    distances, predecessors = bellman_ford_moore(graph, (0,1))
     for i,d in enumerate(distances):
         print(graph.vertices[i], distances[i])
-    print_path(graph, predecessors, (0,1), (2,2))
+    if predecessors:
+        print_path(graph, predecessors, (0,1), (2,2))
+    else:
+        print('Negative weight cycle detected')
 
 if __name__ == '__main__':
     main()
