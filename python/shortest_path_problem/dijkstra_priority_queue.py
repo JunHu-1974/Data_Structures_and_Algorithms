@@ -1,17 +1,19 @@
-from collections import deque
-from graph import Graph
 import heapq
+from graph import Graph
 
 def print_path(graph: Graph, predecessors: list[int], source: tuple[int, int], target: tuple[int, int]) -> None:
-    path = deque()
+    path = []
     source_index = graph.vertices.index(source)
     curr = graph.vertices.index(target)
-    while curr > 0:
-        path.appendleft(str(graph.vertices[curr]))
-        curr = predecessors[curr]
+    while curr >= 0:
+        path.insert(0, str(graph.vertices[curr]))
         if curr == source_index:
-            path.appendleft(str(source))
             curr = -1
+        elif path[0] in path[1:]:
+            path.insert(0, '')
+            curr = -1
+        else:
+            curr = predecessors[curr]
     print('->'.join(path))
 
 def dijkstra_priority_queue(graph: Graph, source: tuple[int, int]) -> tuple[list[int], list[int]]:
@@ -20,20 +22,18 @@ def dijkstra_priority_queue(graph: Graph, source: tuple[int, int]) -> tuple[list
     distances[source_index] = 0
     predecessors = graph.size * [-1]
 
-    unvisited = set(list(range(graph.size)))
-    priority_queue = [(0,source_index)]
-    while unvisited and priority_queue:
-        print(priority_queue)
-        dist,u = heapq.heappop(priority_queue)
-        if u in unvisited:
+    open_queue = [(0,source_index)]
+    closed_list = set()
+    while open_queue:
+        _,u = heapq.heappop(open_queue)
+        if not u in closed_list:
+            closed_list.add(u)
             for v in graph.neighbors[u]:
-                if v in unvisited:
-                    new_distance = distances[u] + graph.adj_matrix[u][v]
-                    if new_distance < distances[v]:
-                        distances[v] = new_distance
-                        predecessors[v] = u
-                        heapq.heappush(priority_queue, (distances[v],v))
-            unvisited.remove(u)
+                new_distance = distances[u] + graph.adj_matrix[u][v]
+                if new_distance < distances[v]:
+                    distances[v] = new_distance
+                    predecessors[v] = u
+                    heapq.heappush(open_queue, (distances[v],v))
     return distances, predecessors
 
 def main() -> None:
@@ -49,28 +49,31 @@ def main() -> None:
     graph.add_edge(0, 3, 2, True)
     graph.add_edge(1, 4, 5, True)
     graph.add_edge(2, 3, 1, False)
-    graph.add_edge(3, 4, 3, False)
+    graph.add_edge(3, 4, 2, False)
     graph.add_edge(2, 5, 1, False)
     graph.add_edge(3, 5, 3, False)
     graph.add_edge(3, 6, 6, False)
     graph.add_edge(4, 6, 1, False)
     graph.add_edge(5, 6, 5, False)
 
-    graph.add_edge(3, 1, 1, True)
-    distances, predecessors = dijkstra_priority_queue(graph, (0,1))
+    source = (0,1)
+    target = (2,2)
+
+    graph.add_edge(3, 1, 2, True)
+    distances, predecessors = dijkstra_priority_queue(graph, source)
     for i,d in enumerate(distances):
         print(graph.vertices[i], distances[i])
-    print_path(graph, predecessors, (0,1), (2,2))
-    graph.add_edge(3, 1, -2, True)
-    distances, predecessors = dijkstra_priority_queue(graph, (0,1))
+    print_path(graph, predecessors, source, target)
+    graph.add_edge(3, 1, -4, True)
+    distances, predecessors = dijkstra_priority_queue(graph, source)
     for i,d in enumerate(distances):
         print(graph.vertices[i], distances[i])
-    print_path(graph, predecessors, (0,1), (2,2))
-    graph.add_edge(3, 1, -9, True)
-    distances, predecessors = dijkstra_priority_queue(graph, (0,1))
+    print_path(graph, predecessors, source, target)
+    graph.add_edge(3, 1, -8, True)
+    distances, predecessors = dijkstra_priority_queue(graph, source)
     for i,d in enumerate(distances):
         print(graph.vertices[i], distances[i])
-    print_path(graph, predecessors, (0,1), (2,2))
+    print_path(graph, predecessors, source, target)
 
 if __name__ == '__main__':
     main()

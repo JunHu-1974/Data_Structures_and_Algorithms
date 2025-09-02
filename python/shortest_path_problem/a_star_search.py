@@ -1,3 +1,4 @@
+import heapq
 from graph import Graph
 
 def print_path(graph: Graph, predecessors: list[int], source: tuple[int, int], target: tuple[int, int]) -> None:
@@ -15,30 +16,30 @@ def print_path(graph: Graph, predecessors: list[int], source: tuple[int, int], t
             curr = predecessors[curr]
     print('->'.join(path))
 
-def dijkstra(graph: Graph, source: tuple[int, int]) -> tuple[list[int], list[int]]:
+def a_star_search(graph: Graph, source: tuple[int, int], target: tuple[int, int], heuristics: list[int]) -> tuple[list[int], list[int]]:
     source_index =  graph.vertices.index(source)
     distances = graph.size * [float('inf')]
     distances[source_index] = 0
     predecessors = graph.size * [-1]
 
-    open_list = set(list(range(graph.size)))
-    while open_list:
-        min_distance = float('inf')
-        u = -1
-        for i in open_list:
-            if distances[i] < min_distance:
-                min_distance = distances[i]
-                u = i
-
-        if u == -1:
-            open_list.clear()
-        else:
-            open_list.remove(u)
+    open_queue = [(0+heuristics[source_index],source_index)]
+    closed_list = set()
+    while open_queue:
+        _,u = heapq.heappop(open_queue)
+        # only correct if heuristics are admissible
+        if u == graph.vertices.index(target):
+            break
+        elif not u in closed_list:
+            closed_list.add(u)
             for v in graph.neighbors[u]:
                 new_distance = distances[u] + graph.adj_matrix[u][v]
                 if new_distance < distances[v]:
                     distances[v] = new_distance
                     predecessors[v] = u
+                    heapq.heappush(open_queue, (distances[v]+heuristics[v],v))
+                    # revisit v if heuristics are inconsistent
+                    if v in closed_list:
+                        closed_list.remove(v)
     return distances, predecessors
 
 def main() -> None:
@@ -63,19 +64,22 @@ def main() -> None:
 
     source = (0,1)
     target = (2,2)
+    heuristics = graph.size * [0]
+    for i in range(graph.size):
+        heuristics[i] = abs(graph.vertices[i][0] - target[0]) + abs(graph.vertices[i][1] - target[1])
 
     graph.add_edge(3, 1, 2, True)
-    distances, predecessors = dijkstra(graph, source)
+    distances, predecessors = a_star_search(graph, source, target, heuristics)
     for i,d in enumerate(distances):
         print(graph.vertices[i], distances[i])
     print_path(graph, predecessors, source, target)
     graph.add_edge(3, 1, -4, True)
-    distances, predecessors = dijkstra(graph, source)
+    distances, predecessors = a_star_search(graph, source, target, heuristics)
     for i,d in enumerate(distances):
         print(graph.vertices[i], distances[i])
     print_path(graph, predecessors, source, target)
     graph.add_edge(3, 1, -8, True)
-    distances, predecessors = dijkstra(graph, source)
+    distances, predecessors = a_star_search(graph, source, target, heuristics)
     for i,d in enumerate(distances):
         print(graph.vertices[i], distances[i])
     print_path(graph, predecessors, source, target)
