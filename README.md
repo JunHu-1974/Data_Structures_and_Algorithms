@@ -12,6 +12,22 @@ Hash table can be used in the implementation of set data structure, which stores
 ### Hash map
 A hash map is a form of hash table that usually stores a large collection of (key, value) pairs, such that each possible key appears at most once in the collection. Using a hash map we can map keys to values. The association between a key and a value is often known as a "mapping". The same word may also be used to refer to the process of creating a new association. That's why a mapping implemented by hash table is called a hash map.
 
+## Priority queue
+
+A priority queue is an abstract data structure. In a priority queue, each item has an associated priority, which determines its order of service. Priority queue serves the item with the highest priority first. Priority values have to be instances of an ordered data type, and higher priority can be given either to the lesser or to the greater values with respect to the given order relation. While priority queues are often implemented using heaps, they are conceptually distinct. A priority queue can be implemented with a heap or with other methods.
+
+### Heap
+A heap is a tree-based data structure that satisfies the heap property: the key stored in each node is either greater than or equal to, or less than or equal to, the keys in the node's children. Heaps where the parent key is greater than or equal to the children keys are called max-heaps; those where the parent key is less than or equal to the children keys are called min-heaps. The node at the "top" of the heap (with no parents) is called the root node. The highest priority item is always stored at the root. However, a heap is not a sorted data structure; it can be regarded as been partially ordered.
+
+### Binary heap
+A common implementation of heap is the binary heap, which takes the form of a binary tree. A binary heap is defined as a binary tree with two additional constraints:
+
+_Shape property:_ a binary heap is a complete binary tree; that is, all levels of the tree, except possibly the last one (deepest) are fully filled, and, if the last level of the tree is not complete, the nodes of that level are filled from left to right.
+
+_Heap property:_ In a max-heap, for any given node C, if P is the parent node of C, then the key of P is greater than or equal to the key of C. In a min-heap, the key of P is less than or equal to the key of C.
+
+Binary heaps can be implemented as an implicit data structure, storing keys in an array and using their relative positions within that array to represent parent-child relationships.
+
 ## Binary tree traversal
 
 Tree traversal is a special form of graph traversal and refers to the process of visiting each node in a tree data structure, exactly once. Unlike linear data structures such as one-dimensional arrays and linked lists, trees may be traversed in multiple ways. From a given node, there is more than one possible next node. Therefore traversals are classified by the order in which the nodes are visited.
@@ -47,8 +63,6 @@ Using the Bellman-Ford algorithm on a graph with negative cycles, a circular pat
 
 ### A* search algorithm
 A* (pronounced "A-star") search algorithm solves the single-pair shortest path problem. It can be seen as an extension of Dijkstra's algorithm and achieves better performance by using heuristics to speed up its search. Compared to Dijkstra's algorithm, A* search algorithm only finds the shortest path from a specified source to a specified goal, not the shortest-path tree from a specified source to all possible goals. This is a necessary trade-off for using a specific-goal-directed heuristic. The algorithm is the best solution in many cases due to its completeness, optimality, and optimal efficiency.
-
-> **Note:** Work in progress. 
 
 ## Sorting algorithms
 
@@ -86,3 +100,5 @@ Memoization is a top-down approach, which is the direct fall-out of the recursiv
 
 ### Tabulation
 Tabulation is a bottom-up approach. Once we formulate the solution to a problem recursively as in terms of its sub-problems, we can try reformulating the problem in a bottom-up fashion: try solving the most basic sub-problems first and use their solutions to build-on and arrive at solutions to the next sub-problems. This is also usually done in a tabular form by iteratively generating solutions to bigger and bigger sub-problems.
+
+> **Note:** Work in progress. 
